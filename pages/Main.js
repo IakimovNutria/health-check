@@ -6,7 +6,7 @@ function renderInputButton(item) {
     return <HealthInputButton name={item.item.value} navigate_key={item.item.key}/>;
 }
 
-function HealthInput() {
+function Main() {
     return (
         <FlatList
             scrollEnabled={false}
@@ -18,4 +18,4 @@ function HealthInput() {
     );
 }
 
-export default HealthInput;
+export default Main;

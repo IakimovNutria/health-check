@@ -3,8 +3,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
-import HealthInput from "./pages/HealthInput";
+import Main from "./pages/Main";
 import { GlobalStyles } from './constants/styles';
+import {InputsNames} from "./constants/constants";
+import {Inputs} from "./constants/constants";
+import {Pagination} from "./pages/health-forms/pagination";
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
@@ -20,8 +23,8 @@ function Tabs() {
             })}
         >
             <BottomTabs.Screen
-                name="Main"
-                component={HealthInput}
+                name="MAIN"
+                component={Main}
                 options={{
                     title: 'Сегодняшнее самочувствие',
                     tabBarLabel: 'Самочувствие',
@@ -29,6 +32,7 @@ function Tabs() {
                         <Ionicons name="hourglass" size={size} color={color} />
                     ),
                 }}
+                navigationKey="MAIN"
             />
         </BottomTabs.Navigator>
     );
@@ -46,10 +50,24 @@ export default function App() {
                     }}
                 >
                     <Stack.Screen
-                        name="Tabs"
+                        name="TABS"
                         component={Tabs}
                         options={{ headerShown: false }}
+                        navigationKey="TABS"
                     />
+                    {
+                        Object.entries(Inputs).map((item) => (
+                            <Stack.Screen
+                                name={item[0]}
+                                component={Pagination[item[0]]}
+                                options={{
+                                    presentation: 'modal',
+                                    title: InputsNames[item[0]]
+                                }}
+                                navigationKey={item[0]}
+                            />)
+                        )
+                    }
                 </Stack.Navigator>
             </NavigationContainer>
         </>

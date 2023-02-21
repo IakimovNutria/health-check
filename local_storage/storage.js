@@ -1,3 +1,3 @@
-import {FemaleInputs} from "../constants/constants";
+import {InputsNames} from "../constants/constants";
 
-export const HealthInputs = FemaleInputs
+export const HealthInputs = InputsNames
