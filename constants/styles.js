@@ -1,4 +1,6 @@
-export const GlobalStyles = {
+import {StyleSheet} from "react-native";
+
+export const Colors = {
     colors: {
         primary50: '#e4d9fd',
         primary100: '#c6affc',
@@ -12,5 +14,14 @@ export const GlobalStyles = {
         error500: '#9b095c',
         gray500: '#39324a',
         gray700: '#221c30',
-    },
+    }
 };
+
+export const Header = StyleSheet.create({
+    header: {
+        color: Colors.colors.primary500,
+        fontWeight: 'bold',
+        fontSize: 25,
+        alignSelf: "center"
+    },
+})

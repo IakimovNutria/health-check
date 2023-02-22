@@ -1,6 +1,6 @@
 import {useNavigation} from "@react-navigation/native";
 import {Pressable, StyleSheet, Text, View} from "react-native";
-import {GlobalStyles} from "../constants/styles";
+import {Colors} from "../constants/styles";
 
 function HealthInputButton({name, navigate_key}) {
     const navigation = useNavigation();
@@ -39,18 +39,18 @@ const styles = StyleSheet.create({
     expenseItem: {
         padding: 12,
         marginVertical: 2,
-        backgroundColor: GlobalStyles.colors.primary500,
+        backgroundColor: Colors.colors.primary500,
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 6,
         elevation: 3,
-        shadowColor: GlobalStyles.colors.gray500,
+        shadowColor: Colors.colors.gray500,
         shadowRadius: 4,
         shadowOffset: { width: 1, height: 1 },
         shadowOpacity: 0.4,
     },
     textBase: {
-        color: GlobalStyles.colors.primary50,
+        color: Colors.colors.primary50,
     },
     description: {
         fontSize: 16,
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
         minWidth: 80,
     },
     amount: {
-        color: GlobalStyles.colors.primary500,
+        color: Colors.colors.primary500,
         fontWeight: 'bold',
     },
 });
