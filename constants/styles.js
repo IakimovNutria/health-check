@@ -17,11 +17,66 @@ export const Colors = {
     }
 };
 
-export const Header = StyleSheet.create({
+export const styles = StyleSheet.create({
     header: {
-        color: Colors.colors.primary500,
+        color: '#3e04c3',
         fontWeight: 'bold',
         fontSize: 25,
-        alignSelf: "center"
+        marginBottom: 10,
+        textAlign: "center"
     },
-})
+    radioSmile: {
+        width: 60,
+        height: 60
+    },
+    mainButton: {
+        width: "80%",
+        alignSelf: 'center',
+        padding: 12,
+        marginVertical: 2,
+        backgroundColor: '#3e04c3',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 6,
+        elevation: 3,
+        shadowColor: '#39324a',
+        shadowRadius: 4,
+        shadowOffset: { width: 1, height: 1 },
+        shadowOpacity: 0.4
+    },
+    mainButton_pressed: {
+        opacity: 0.75
+    },
+    mainButton__text: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#e4d9fd'
+    },
+    healthForm: {
+        marginTop: 20,
+        marginBottom: 40,
+        display: "flex",
+        alignItems: "center",
+        width: "100%"
+    },
+    shortHealthFormTextInput: {
+        borderStyle: "solid",
+        borderWidth: 3,
+        width: "75%",
+        borderRadius: 5,
+        textAlign: "center",
+        fontSize: 50,
+        fontWeight: 'bold',
+        borderColor: '#3e04c3',
+        color: '#3e04c3',
+    },
+    longHealthFormTextInput: {
+        borderStyle: "solid",
+        borderWidth: 3,
+        width: "75%",
+        borderRadius: 5,
+        fontSize: 16,
+        borderColor: '#000000',
+        color: '#000000',
+    },
+});

@@ -1,3 +1,4 @@
-import {InputsNames} from "../constants/constants";
+import {FormsHeaders} from "../pages/health-forms/forms-utils";
 
-export const HealthInputs = InputsNames
+
+export const HealthInputs = FormsHeaders

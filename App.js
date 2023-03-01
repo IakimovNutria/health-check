@@ -5,9 +5,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import Main from "./pages/Main";
 import { Colors } from './constants/styles';
-import {InputsNames} from "./constants/constants";
-import {Inputs} from "./constants/constants";
-import {Pagination} from "./pages/health-forms/pagination";
+import {Pagination, Forms, FormsHeaders} from "./pages/health-forms/forms-utils";
+import Statistic from "./pages/Statistic";
+import Settings from "./pages/Settings";
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
@@ -34,6 +34,30 @@ function Tabs() {
                 }}
                 navigationKey="MAIN"
             />
+            <BottomTabs.Screen
+                name="STAT"
+                component={Statistic}
+                options={{
+                    title: 'Статистика',
+                    tabBarLabel: 'Статистика',
+                    tabBarIcon: ({ color, size }) => (
+                        <Ionicons name="stats-chart" size={size} color={color} />
+                    ),
+                }}
+                navigationKey="MAIN"
+            />
+            <BottomTabs.Screen
+                name="SETTINGS"
+                component={Settings}
+                options={{
+                    title: 'Настройки',
+                    tabBarLabel: 'Настройки',
+                    tabBarIcon: ({ color, size }) => (
+                        <Ionicons name="settings" size={size} color={color} />
+                    ),
+                }}
+                navigationKey="MAIN"
+            />
         </BottomTabs.Navigator>
     );
 }
@@ -56,17 +80,20 @@ export default function App() {
                         navigationKey="TABS"
                     />
                     {
-                        Object.entries(Inputs).map((item) => (
-                            <Stack.Screen
-                                name={item[0]}
-                                component={Pagination[item[0]]}
-                                options={{
-                                    presentation: 'modal',
-                                    title: InputsNames[item[0]]
-                                }}
-                                navigationKey={item[0]}
-                            />)
-                        )
+                        Object.entries(Forms).map((item) => {
+                            const name = item[0];
+                            const component = Pagination[item[0]];
+                            const title = FormsHeaders[item[0]];
+                            return (<Stack.Screen
+                                        name={name}
+                                        component={component}
+                                        options={{
+                                            presentation: 'modal',
+                                            title: title
+                                        }}
+                                        navigationKey={name}
+                                    />)
+                        })
                     }
                 </Stack.Navigator>
             </NavigationContainer>

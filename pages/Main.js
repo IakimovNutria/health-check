@@ -1,9 +1,9 @@
 import { FlatList } from 'react-native';
 import {HealthInputs} from "../local_storage/storage";
-import HealthInputButton from "../components/HealthInputButton";
+import HealthFormButton from "../components/HealthFormButton";
 
 function renderInputButton(item) {
-    return <HealthInputButton name={item.item.value} navigate_key={item.item.key}/>;
+    return <HealthFormButton name={item.item.value} navigate_key={item.item.key}/>;
 }
 
 function Main() {

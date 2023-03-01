@@ -1,11 +1,12 @@
-import {ScrollView, Text, View} from "react-native";
-import {Header} from "../../constants/styles";
+import {Image, ScrollView, StyleSheet, Text, View} from "react-native";
+import {styles} from "../../constants/styles";
 import RadioButtonRN from 'radio-buttons-react-native';
 import { CheckBox } from '@rneui/themed';
-import {Ionicons} from "@expo/vector-icons";
+import {DreamTranslation} from "./forms-utils";
 import {useState} from "react";
+import RadioSmiles from "../../components/RadioSmiles";
 
-const data = [
+const radioData = [
     {
         label: 'не спал'
     },
@@ -24,91 +25,50 @@ const data = [
 ];
 
 export default function Dream() {
-    const [checked, setChecked] = useState(false);
+    const [checked, setChecked] = useState({
+        quickly: false,
+        woke_up: false,
+        restfull: false,
+        light_sleep: false,
+        nightmares: false,
+        easy_awaking: false,
+        heavy_awaking: false
+    });
     return (
         <ScrollView>
-            <Text style={{...Header.header, marginTop: 10}}>Продолжительность сна</Text>
-            <RadioButtonRN
-                data={data}
-                selectedBtn={(e) => console.log(e)}
-                boxStyle={{width: "75%", height: 50, borderRadius: 5, borderWidth: 0}}
-                style={{alignSelf: 'center'}}
-                textStyle={{fontWeight: 'bold'}}
-                boxActiveBgColor="#fff"
-                boxDeactiveBgColor="#fff"
-            />
-            <Text style={{...Header.header, marginTop: 10}}>Характеристика сна</Text>
-            <CheckBox
-                checked={checked}
-                onPress={() => setChecked((prev) => !prev)}
-                title="уснул быстро"
-                iconType="material-community"
-                checkedIcon="checkbox-outline"
-                uncheckedIcon={'checkbox-blank-outline'}
-                containerStyle={{width: "75%", alignSelf: 'center', height: 50, justifyContent: 'center', borderRadius: 5}}
-                titleProps={{fontWeight: 'normal'}}
-            />
-            <CheckBox
-                checked={checked}
-                onPress={() => setChecked((prev) => !prev)}
-                title="много просыпался за ночь"
-                iconType="material-community"
-                checkedIcon="checkbox-outline"
-                uncheckedIcon={'checkbox-blank-outline'}
-                containerStyle={{width: "75%", alignSelf: 'center', height: 50, justifyContent: 'center', borderRadius: 5}}
-                titleProps={{fontWeight: 'normal'}}
-            />
-            <CheckBox
-                checked={checked}
-                onPress={() => setChecked((prev) => !prev)}
-                title="спокойный сон"
-                iconType="material-community"
-                checkedIcon="checkbox-outline"
-                uncheckedIcon={'checkbox-blank-outline'}
-                containerStyle={{width: "75%", alignSelf: 'center', height: 50, justifyContent: 'center', borderRadius: 5}}
-                titleProps={{fontWeight: 'normal'}}
-            />
-            <CheckBox
-                checked={checked}
-                onPress={() => setChecked((prev) => !prev)}
-                title="чуткий сон"
-                iconType="material-community"
-                checkedIcon="checkbox-outline"
-                uncheckedIcon={'checkbox-blank-outline'}
-                containerStyle={{width: "75%", alignSelf: 'center', height: 50, justifyContent: 'center', borderRadius: 5}}
-                titleProps={{fontWeight: 'normal'}}
-            />
-            <CheckBox
-                checked={checked}
-                onPress={() => setChecked((prev) => !prev)}
-                title="ночные кошмары"
-                iconType="material-community"
-                checkedIcon="checkbox-outline"
-                uncheckedIcon={'checkbox-blank-outline'}
-                containerStyle={{width: "75%", alignSelf: 'center', height: 50, justifyContent: 'center', borderRadius: 5}}
-                titleProps={{fontWeight: 'normal'}}
-            />
-            <CheckBox
-                checked={checked}
-                onPress={() => setChecked((prev) => !prev)}
-                title="легкое пробуждение"
-                iconType="material-community"
-                checkedIcon="checkbox-outline"
-                uncheckedIcon={'checkbox-blank-outline'}
-                containerStyle={{width: "75%", alignSelf: 'center', height: 50, justifyContent: 'center', borderRadius: 5}}
-                titleProps={{fontWeight: 'normal'}}
-            />
-            <CheckBox
-                checked={checked}
-                onPress={() => setChecked((prev) => !prev)}
-                title="тяжелое пробуждение"
-                iconType="material-community"
-                checkedIcon="checkbox-outline"
-                uncheckedIcon={'checkbox-blank-outline'}
-                containerStyle={{width: "75%", alignSelf: 'center', height: 50, justifyContent: 'center', borderRadius: 5}}
-                titleProps={{fontWeight: 'normal'}}
-            />
+            <View style={styles.healthForm}>
+                <Text style={styles.header}>Продолжительность сна</Text>
+                <RadioButtonRN
+                    data={radioData}
+                    selectedBtn={(e) => console.log(e)}
+                    boxStyle={{width: "100%", height: 50, borderRadius: 5, borderWidth: 0}}
+                    style={{marginBottom: 20, width: "75%"}}
+                    textStyle={{fontWeight: 'bold'}}
+                    boxActiveBgColor="#fff"
+                    boxDeactiveBgColor="#fff"
+                />
+                <Text style={styles.header}>Характеристика сна</Text>
+                <View style={{marginBottom: 10, width: "75%"}}>
+                {
+                    Object.entries(DreamTranslation).map((item) => {
+                        const name = item[0];
+                        const title = item[1];
+                        return (<CheckBox
+                                    checked={checked[name]}
+                                    onPress={() => setChecked((prev) => {return {...prev, [name]: !prev[name]}})}
+                                    title={title}
+                                    iconType="material-community"
+                                    checkedIcon="checkbox-outline"
+                                    uncheckedIcon={'checkbox-blank-outline'}
+                                    containerStyle={{width: "100%", alignSelf: 'center', height: 50, justifyContent: 'center', borderRadius: 5}}
+                                    titleProps={{fontWeight: 'normal'}}
+                                />)
+                    })
+                }
+                </View>
+                <Text style={styles.header}>Оценка качества сна</Text>
+                <RadioSmiles />
+            </View>
         </ScrollView>
     )
 }
-
