@@ -38,8 +38,8 @@ function Tabs() {
                 name="STAT"
                 component={Statistic}
                 options={{
-                    title: 'Статистика',
-                    tabBarLabel: 'Статистика',
+                    title: 'Журнал',
+                    tabBarLabel: 'Журнал',
                     tabBarIcon: ({ color, size }) => (
                         <Ionicons name="stats-chart" size={size} color={color} />
                     ),

@@ -1,11 +1,12 @@
 import {Text, TextInput, View} from "react-native";
 import {styles} from "../../constants/styles";
 import {useState} from "react";
+import HealthForm from "./HealthForm";
 
 export default function Menstrual() {
     const [day, setDay] = useState("");
     return (
-        <View style={styles.healthForm}>
+        <HealthForm>
             <Text style={styles.header}>День менструального цикла</Text>
             <TextInput editable
                            maxLength={3}
@@ -14,5 +15,5 @@ export default function Menstrual() {
                            style={styles.shortHealthFormTextInput}
                            keyboardType={"numbers-and-punctuation"}
             />
-        </View>)
+        </HealthForm>)
 }

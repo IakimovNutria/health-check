@@ -27,7 +27,33 @@ export const styles = StyleSheet.create({
     },
     radioSmile: {
         width: 60,
-        height: 60
+        height: 60,
+        opacity: 0.2
+    },
+    radioSmile_chosen: {
+        opacity: 1
+    },
+    radioNumberBox: {
+        width: 50,
+        height: 50,
+        opacity: 0.2,
+        borderRadius: 10,
+        backgroundColor: '#000000',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    radioNumbersContainer: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: 'space-between',
+        width: '80%'
+    },
+    radioNumberBox_chosen: {
+        opacity: 1
+    },
+    radioNumber: {
+        color: '#FFFFFF'
     },
     mainButton: {
         width: "80%",
@@ -79,4 +105,9 @@ export const styles = StyleSheet.create({
         borderColor: '#000000',
         color: '#000000',
     },
+    info: {
+        marginRight: 10,
+        marginLeft: 10,
+        marginBottom: 10,
+    }
 });

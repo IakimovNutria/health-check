@@ -1,11 +1,12 @@
 import {Text, TextInput, View} from "react-native";
 import {useState} from "react";
 import {styles} from "../../constants/styles";
+import HealthForm from "./HealthForm";
 
 export default function Heart() {
     const [heartRate, setHeartRate] = useState("");
     return (
-        <View style={styles.healthForm}>
+        <HealthForm>
             <Text style={styles.header}>Утренняя ЧСС (УД/МИН)</Text>
             <TextInput editable
                        maxLength={3}
@@ -14,5 +15,5 @@ export default function Heart() {
                        style={styles.shortHealthFormTextInput}
                        keyboardType={"numbers-and-punctuation"}
             />
-        </View>)
+        </HealthForm>)
 }
