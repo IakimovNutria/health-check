@@ -1,6 +1,6 @@
 import {useNavigation} from "@react-navigation/native";
 import {Pressable, Text} from "react-native";
-import {styles} from "../constants/styles";
+import {styles} from "../styles/styles";
 
 function HealthFormButton({name, navigate_key}) {
     const navigation = useNavigation();

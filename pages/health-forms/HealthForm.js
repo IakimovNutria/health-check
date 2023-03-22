@@ -1,12 +1,15 @@
-import {styles} from "../../constants/styles";
+import {styles} from "../../styles/styles";
 import {ScrollView, View} from "react-native";
+import BgImageScreen from "../../components/BgImageScreen";
 
 export default function HealthForm({children}) {
     return (
-        <ScrollView automaticallyAdjustKeyboardInsets={true}>
-            <View style={styles.healthForm}>
-                {children}
-            </View>
-        </ScrollView>
+        <BgImageScreen>
+            <ScrollView automaticallyAdjustKeyboardInsets={true}>
+                <View style={styles.healthForm}>
+                    {children}
+                </View>
+            </ScrollView>
+        </BgImageScreen>
     )
 }

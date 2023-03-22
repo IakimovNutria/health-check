@@ -1,6 +1,6 @@
 import {ScrollView, Text, TextInput, View} from "react-native";
 import RadioSmiles from "../../components/RadioSmiles";
-import {styles} from "../../constants/styles";
+import {styles} from "../../styles/styles";
 import {useState} from "react";
 import HealthForm from "./HealthForm";
 

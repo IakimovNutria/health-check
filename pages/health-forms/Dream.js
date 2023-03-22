@@ -1,5 +1,5 @@
 import {Image, ScrollView, StyleSheet, Text, View} from "react-native";
-import {styles} from "../../constants/styles";
+import {styles} from "../../styles/styles";
 import RadioButtonRN from 'radio-buttons-react-native';
 import { CheckBox } from '@rneui/themed';
 import {DreamTranslation} from "./forms-utils";

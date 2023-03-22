@@ -1,5 +1,5 @@
 import {KeyboardAvoidingView, ScrollView, Text, TextInput, View} from "react-native";
-import {styles} from "../../constants/styles";
+import {styles} from "../../styles/styles";
 import RadioButtonRN from "radio-buttons-react-native";
 import {useState} from "react";
 import RadioSmiles from "../../components/RadioSmiles";

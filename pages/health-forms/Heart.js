@@ -1,6 +1,6 @@
 import {Text, TextInput, View} from "react-native";
 import {useState} from "react";
-import {styles} from "../../constants/styles";
+import {styles} from "../../styles/styles";
 import HealthForm from "./HealthForm";
 
 export default function Heart() {

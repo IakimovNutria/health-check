@@ -1,9 +1,10 @@
 import {ScrollView, Text, TextInput, View} from 'react-native';
-import {styles} from '../../constants/styles';
+import {styles} from '../../styles/styles';
 import RadioButtonRN from 'radio-buttons-react-native';
-import RadioNumbers from '../../components/RadioNumbers';
+import RadioItems from '../../components/RadioItems';
 import HealthForm from './HealthForm';
 import {useState} from 'react';
+
 
 const radioData = [
     {
@@ -40,6 +41,7 @@ const radioData = [
 
 export default function Appetite() {
     const [water, setWater] = useState('');
+
     return (
         <HealthForm>
             <Text style={styles.info}>
@@ -48,9 +50,9 @@ export default function Appetite() {
                 }
             </Text>
             <Text style={styles.header}>Количество основных приемов пищи</Text>
-            <RadioNumbers numbers={[1, 2, 3, 4, 5]}/>
+            <RadioItems numbers={[1, 2, 3, 4, 5]}/>
             <Text style={styles.header}>Количество перекусов</Text>
-            <RadioNumbers numbers={[1, 2, 3, 4, '5+']}/>
+            <RadioItems numbers={[1, 2, 3, 4, '5+']}/>
             <Text style={styles.header}>Оценка аппетита</Text>
             <RadioButtonRN
                 data={radioData}

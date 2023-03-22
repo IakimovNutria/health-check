@@ -4,10 +4,17 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import Main from "./pages/Main";
-import { Colors } from './constants/styles';
+import { Colors } from './styles/styles';
 import {Pagination, Forms, FormsHeaders} from "./pages/health-forms/forms-utils";
 import Statistic from "./pages/Statistic";
 import Settings from "./pages/Settings";
+import {Provider} from 'react-redux';
+import Registration from "./pages/Registration";
+import {getItem} from "./storage/storage";
+import {storageKeys} from "./constants/enums";
+import {store} from "./store";
+import {setAuthStatus} from "./store/actions";
+import {useAppSelector} from "./hooks";
 
 const Stack = createNativeStackNavigator();
 const BottomTabs = createBottomTabNavigator();
@@ -62,8 +69,9 @@ function Tabs() {
     );
 }
 
-export default function App() {
-    return (
+function Page() {
+    const authStatus = useAppSelector((state) => state.authStatus);
+    return authStatus ? (
         <>
             <StatusBar style="light" />
             <NavigationContainer>
@@ -85,18 +93,27 @@ export default function App() {
                             const component = Pagination[item[0]];
                             const title = FormsHeaders[item[0]];
                             return (<Stack.Screen
-                                        name={name}
-                                        component={component}
-                                        options={{
-                                            presentation: 'modal',
-                                            title: title
-                                        }}
-                                        navigationKey={name}
-                                    />)
+                                name={name}
+                                component={component}
+                                options={{
+                                    presentation: 'modal',
+                                    title: title
+                                }}
+                                navigationKey={name}
+                            />)
                         })
                     }
                 </Stack.Navigator>
             </NavigationContainer>
         </>
+    ) : <Registration />;
+}
+
+export default function App() {
+    getItem(storageKeys.DATE_START).then(date => store.dispatch(setAuthStatus(date !== null)));
+    return (
+        <Provider store={store}>
+            <Page />
+        </Provider>
     );
 }

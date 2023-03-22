@@ -1,5 +1,5 @@
 import {Image, Pressable, View} from "react-native";
-import {styles} from "../constants/styles";
+import {styles} from "../styles/styles";
 import {useState} from "react";
 
 function RadioSmiles() {

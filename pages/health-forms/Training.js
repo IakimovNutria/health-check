@@ -1,6 +1,6 @@
 import {Text, TextInput} from "react-native";
 import HealthForm from "./HealthForm";
-import {styles} from "../../constants/styles";
+import {styles} from "../../styles/styles";
 import RadioButtonRN from "radio-buttons-react-native";
 import {useState} from "react";
 

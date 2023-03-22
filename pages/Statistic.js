@@ -1,8 +1,11 @@
 import {Text} from "react-native";
+import BgImageScreen from "../components/BgImageScreen";
 
 function Statistic() {
     return (
-        <Text>LOL</Text>
+        <BgImageScreen>
+            <Text>LOL</Text>
+        </BgImageScreen>
     );
 }
 
