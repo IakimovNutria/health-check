@@ -113,5 +113,20 @@ export const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         height: "100%"
+    },
+    healthFormSaveButton: {
+        backgroundColor: '#000',
+        color: '#FFF',
+        marginTop: 10,
+        width: '50%',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: 40
+    },
+    healthFormSaveButton_pressed: {
+        backgroundColor: '#555'
+    },
+    healthFormSaveButton__text: {
+        color: '#FFF'
     }
 });

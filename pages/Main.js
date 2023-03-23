@@ -1,10 +1,10 @@
 import { FlatList } from 'react-native';
 import {HealthInputs} from "../storage/storage";
-import HealthFormButton from "../components/HealthFormButton";
+import OpenHealthFormButton from "../components/OpenHealthFormButton";
 import BgImageScreen from "../components/BgImageScreen";
 
 function renderInputButton(item) {
-    return <HealthFormButton name={item.item.value} navigate_key={item.item.key}/>;
+    return <OpenHealthFormButton name={item.item.value} navigate_key={item.item.key}/>;
 }
 
 function Main() {

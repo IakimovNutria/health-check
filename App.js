@@ -11,7 +11,7 @@ import Settings from "./pages/Settings";
 import {Provider} from 'react-redux';
 import Registration from "./pages/Registration";
 import {getItem} from "./storage/storage";
-import {storageKeys} from "./constants/enums";
+import {StorageKeys} from "./constants/enums";
 import {store} from "./store";
 import {setAuthStatus} from "./store/actions";
 import {useAppSelector} from "./hooks";
@@ -100,6 +100,7 @@ function Page() {
                                     title: title
                                 }}
                                 navigationKey={name}
+                                key={name}
                             />)
                         })
                     }
@@ -110,7 +111,7 @@ function Page() {
 }
 
 export default function App() {
-    getItem(storageKeys.DATE_START).then(date => store.dispatch(setAuthStatus(date !== null)));
+    getItem(StorageKeys.DATE_START).then(date => store.dispatch(setAuthStatus(date !== null)));
     return (
         <Provider store={store}>
             <Page />

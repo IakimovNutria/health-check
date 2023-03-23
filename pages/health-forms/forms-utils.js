@@ -36,12 +36,3 @@ export const Pagination = {
     [Forms.APPETITE]: Appetite
 };
 
-export const DreamTranslation = {
-    quickly: "уснул быстро",
-    woke_up: "много просыпался за ночь",
-    restfull: "спокойный сон",
-    light_sleep: "чуткий сон",
-    nightmares: "ночные кошмары",
-    easy_awaking: "легкое пробуждение",
-    heavy_awaking: "тяжелое пробуждение"
-}

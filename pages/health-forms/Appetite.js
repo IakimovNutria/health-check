@@ -1,9 +1,13 @@
-import {ScrollView, Text, TextInput, View} from 'react-native';
+import {Button, Text, TextInput} from 'react-native';
 import {styles} from '../../styles/styles';
 import RadioButtonRN from 'radio-buttons-react-native';
 import RadioItems from '../../components/RadioItems';
 import HealthForm from './HealthForm';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
+import {getItem, setItem} from "../../storage/storage";
+import {getDateKey} from "../../tools/func";
+import {StorageKeys} from "../../constants/enums";
+import SaveButton from "../../components/SaveButton";
 
 
 const radioData = [
@@ -41,6 +45,35 @@ const radioData = [
 
 export default function Appetite() {
     const [water, setWater] = useState('');
+    const [mainMealCount, setMainMealCount] = useState('');
+    const [snackCount, setSnackCount] = useState('');
+    const [appetite, setAppetite] = useState('');
+    const [appetiteRadioIndex, setAppetiteRadioIndex] = useState(-1);
+
+    useEffect(() => {
+        const currentDate = new Date();
+        getItem(getDateKey(StorageKeys.APPETITE, currentDate))
+            .then((a) => setAppetite(a));
+        getItem(getDateKey(StorageKeys.WATER, currentDate))
+            .then((w) => setWater(w));
+        getItem(getDateKey(StorageKeys.MAIN_MEAL_COUNT, currentDate))
+            .then((m) => setMainMealCount(m));
+        getItem(getDateKey(StorageKeys.SNACK_COUNT, currentDate))
+            .then((s) => setSnackCount(s));
+    }, []);
+
+    useEffect(() => {
+        const chosenIndex = radioData.findIndex((e) => e.label === appetite);
+        setAppetiteRadioIndex(chosenIndex !== -1 ? chosenIndex + 1 : -1);
+    }, [appetite]);
+
+    const save = () => {
+        const currentDate = new Date();
+        setItem(getDateKey(StorageKeys.WATER, currentDate), water);
+        setItem(getDateKey(StorageKeys.MAIN_MEAL_COUNT, currentDate), mainMealCount);
+        setItem(getDateKey(StorageKeys.SNACK_COUNT, currentDate), snackCount);
+        setItem(getDateKey(StorageKeys.APPETITE, currentDate), appetite);
+    };
 
     return (
         <HealthForm>
@@ -50,13 +83,14 @@ export default function Appetite() {
                 }
             </Text>
             <Text style={styles.header}>Количество основных приемов пищи</Text>
-            <RadioItems numbers={[1, 2, 3, 4, 5]}/>
+            <RadioItems items={['1', '2', '3', '4', '5']} onChoose={setMainMealCount} chosen={mainMealCount}/>
             <Text style={styles.header}>Количество перекусов</Text>
-            <RadioItems numbers={[1, 2, 3, 4, '5+']}/>
+            <RadioItems items={['1', '2', '3', '4', '5+']} onChoose={setSnackCount} chosen={snackCount}/>
             <Text style={styles.header}>Оценка аппетита</Text>
             <RadioButtonRN
+                initial={appetiteRadioIndex}
                 data={radioData}
-                selectedBtn={(e) => console.log(e)}
+                selectedBtn={(e) => {if (e !== undefined) {setAppetite(e.label)}}}
                 boxStyle={{width: '100%', height: 'auto', borderRadius: 5, borderWidth: 0}}
                 style={{marginBottom: 20, width: '75%'}}
                 textStyle={{fontWeight: 'bold'}}
@@ -69,8 +103,10 @@ export default function Appetite() {
                        style={styles.shortHealthFormTextInput}
                        keyboardType={'numbers-and-punctuation'}
                        value={water}
+                       inputMode='numeric'
                        onChangeText={(text) => setWater(text.replace(/[^0-9]/g, ''))}
             />
+            <SaveButton onPress={save} />
         </HealthForm>
     )
 }

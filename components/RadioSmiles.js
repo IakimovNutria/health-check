@@ -2,8 +2,7 @@ import {Image, Pressable, View} from "react-native";
 import {styles} from "../styles/styles";
 import {useState} from "react";
 
-function RadioSmiles() {
-    const [chosen, setChosen] = useState(null);
+function RadioSmiles({onChoose, chosen}) {
     return (
         <View style={{display: "flex", flexDirection: "row"}}>
             {
@@ -14,11 +13,10 @@ function RadioSmiles() {
                 ].map((src, index) => {
                     return (
                         <Pressable onPress={() => {
-                            setChosen(index);
-
-                        }}>
-                            <Image source={src}
-                                   style={[styles.radioSmile, chosen===index && styles.radioSmile_chosen]}
+                            onChoose(index.toString());
+                        }} key={src.label}>
+                            <Image source={src} key={src.label}
+                                   style={[styles.radioSmile, chosen===index.toString() && styles.radioSmile_chosen]}
                             />
                         </Pressable>
 

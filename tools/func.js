@@ -11,3 +11,6 @@ export const zip = (array1, array2) => {
     return res;
 };
 
+export const getDateKey = (key, date) => {
+    return `${key.toString()}_${date.getDate()}_${date.getMonth()}_${date.getFullYear()}`
+}
